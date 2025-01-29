@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-def plot_data(ax, x, y, yerr=None, label=None, fmt='.', attrs={}, clear_plot=True, **kwargs):
+def plot_1D_data(ax, x, y, yerr=None, label=None, fmt='.', attrs={}, clear_plot=True, frameon=True, markerscale=1, **kwargs):
     """
     Plots data on the given Axes object with optional error bars and attributes.
     Parameters:
@@ -19,15 +19,15 @@ def plot_data(ax, x, y, yerr=None, label=None, fmt='.', attrs={}, clear_plot=Tru
         plot_data(ax, x, y, yerr=y_err, label='Data', fmt='o-', attrs=dict(xscale='linear', yscale='log', xlabel='x', ylabel='y', title='Example Plot'))
     """
     if clear_plot:
-        ax.clear()
+        ax.cla()
         
     ax.errorbar(x, y, yerr=yerr, fmt=fmt, label=label, **kwargs)
     ax.set(**attrs)
     if label is not None:
-        ax.legend()
+        ax.legend(frameon=frameon, markerscale=markerscale)
+        
 
-
-def plot_imshow(ax, data, attrs, cax=None, cb_label=None, cb_fontsize=14, clear=True, **kwargs):
+def plot_imshow(ax, data, attrs={}, cax=None, cb_label=None, cb_fontsize=14, clear=True, **kwargs):
     """
     Displays an image on the given Axes object with optional colorbar and attributes.
     Parameters:
